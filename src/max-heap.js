@@ -15,12 +15,7 @@ class MaxHeap {
 	}
 
 	pop() {
-		if (this.root === null) {
-			this.root=node;
-			
-		} else {
-			this.root=node;
-		}
+	
 	}
 
 	detachRoot() {
@@ -44,7 +39,22 @@ class MaxHeap {
 	}
 
 	insertNode(node) {
-		
+		if (this.root === null) {
+			this.root = node;
+		}
+		else {
+			if(this.parentNodes[0].left === null){
+				this.parentNodes[0].left = node;
+				node.parent = this.parentNodes[0];
+
+			} else if (this.parentNodes[0].right === null){
+				this.parentNodes[0].right = node;
+				node.parent = this.parentNodes[0];
+				this.parentNodes.shift();
+
+			}
+		}
+		this.parentNodes.push(node);
 	}
 
 	shiftNodeUp(node) {
